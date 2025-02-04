@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XpenseSmart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="loader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="salary-setup" id="salarySetup">
+        <h2 class="setsal">Welcome to XpenseSmart</h2>
+        <form id="salaryForm">
+            <div class="input-group">
+                <select id="currency" required>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="INR">INR (₹)</option>
+                </select>
+                <input type="number" id="salary" placeholder="Enter Monthly Salary" required>
+            </div>
+            <button type="submit">Set Salary</button>
+        </form>
+    </div>
+
+    <div class="main-content" id="mainContent" style="display: none;">
+        <header>
+            <h1>XpenseSmart</h1>
+            <div class="header-right">
+                <div class="notification-icon" id="notificationIcon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge">0</span>
+                </div>
+                <div class="notification-panel" id="notificationPanel">
+                    <div class="notification-header">
+                        <h3>Notifications</h3>
+                        <button id="clearNotifications">Clear All</button>
+                    </div>
+                    <div class="notification-list" id="notificationList">
+                        <!-- Notifications will be added here -->
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Balance Section -->
+            <section class="dashboard-card balance-card">
+                <div class="balance-info">
+                    <h3 class="currentbalance">Current Balance</h3>
+                    <p id="balanceAmount">$0.00</p>
+                </div>
+                <div class="financial-overview">
+                    <div class="overview-item profit">
+                        <span class="overview-label-profit">Total Income</span>
+                        <span class="overview-amount-profit" id="totalProfit">$0.00</span>
+                    </div>
+                    <div class="overview-item expenses">
+                        <span class="overview-label-expense">Total Expenses</span>
+                        <span class="overview-amount-expense" id="totalExpenses">$0.00</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="dashboard-card quick-actions">
+                <h3>Quick Actions</h3>
+                <button id="addTransactionBtn" class="add-transaction-btn">
+                    <i class="fas fa-plus"></i> Add Transaction
+                </button>
+                <button class="view-history-btn" onclick="window.location.href='history.html'">
+                    <i class="fas fa-history"></i> View History
+                </button>
+            </section>
+
+            <!-- Recent Transactions -->
+            <section class="dashboard-card recent-transactions">
+                <div class="card-header">
+                    <h3>Recent Transactions</h3>
+                    <button class="view-all-btn" onclick="window.location.href='history.html'">
+                        View All
+                    </button>
+                </div>
+                <div id="transactionsList" class="transactions-list">
+                    <!-- Transactions will be added here -->
+                </div>
+            </section>
+
+            <!-- Monthly Summary -->
+            <section class="dashboard-card monthly-summary">
+                <h3>Monthly Summary</h3>
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Budget Used</span>
+                        <div class="progress-bar">
+                            <div class="progress" id="budgetProgress"></div>
+                        </div>
+                        <span class="stat-value" id="budgetPercentage">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Savings</span>
+                        <span class="stat-value" id="monthSavings">$0.00</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Transaction Modal -->
+        <div id="transactionModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Add New Transaction</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <form id="expenseForm">
+                    <div class="form-group">
+                        <input type="text" id="description" placeholder="Description" required>
+                        <input type="number" id="amount" placeholder="Amount" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select id="type" required>
+                            <option value="expense">Expense</option>
+                            <option value="income">Income</option>
+                        </select>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="food">Food & Dining</option>
+                            <option value="transportation">Transportation</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="education">Education</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="date" id="transactionDate" required>
+                        <select id="paymentMethod" required>
+                            <option value="">Select Payment Method</option>
+                            <option value="cash">Cash</option>
+                            <option value="credit">Credit Card</option>
+                            <option value="debit">Debit Card</option>
+                            <option value="upi">UPI</option>
+                            <option value="bank">Bank Transfer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group recurring-group">
+                        <label class="recurring-label">
+                            <input type="checkbox" id="isRecurring">
+                            Recurring Transaction
+                        </label>
+                        <select id="recurringFrequency" disabled>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="receipt" class="receipt-upload">
+                            <i class="fas fa-receipt"></i>
+                            <span>Attach Receipt</span>
+                            <input type="file" id="receipt" accept="image/*,.pdf">
+                        </label>
+                        <span id="fileName" class="file-name"></span>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-plus"></i> Add Transaction
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <nav class="footer-nav">
+            <a href="index.html" class="active">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="history.html">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+            </a>
+            <a href="graphs.html">
+                <i class="fas fa-chart-bar"></i>
+                <span>Graphs</span>
+            </a>
+            <a href="profile.html">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+    <script src="app.js"></script>
+    <script src="loader.js"></script>
+</body>
+</html>

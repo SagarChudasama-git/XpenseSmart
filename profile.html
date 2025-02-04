@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XpenseSmart - Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="loader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="profile-container">
+        <header>
+            <h1 class="headpro">Profile</h1>
+        </header>
+
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <form id="profileForm">
+                    <div class="profile-info-edit">
+                        <div class="input-group">
+                            <label for="profileName">Name</label>
+                            <input type="text" id="profileName" placeholder="Your Name" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="profileEmail">Email</label>
+                            <input type="email" id="profileEmail" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="save-profile-btn">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="profile-details">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-label">Monthly Salary</span>
+                        <span class="info-value" id="userSalary">$0.00</span>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-label">Currency</span>
+                        <span class="info-value" id="userCurrency">USD</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-card">
+                    <div class="stat-icon expense-icon">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Total Expenses</span>
+                        <span class="stat-value expense-value" id="totalExpenses">$0.00</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon income-icon">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Total Income</span>
+                        <span class="stat-value income-value" id="totalIncome">$0.00</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon average-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Average Monthly</span>
+                        <span class="stat-value average-value" id="avgExpenses">$0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="danger-zone">
+                <h2>Danger Zone</h2>
+                <div class="reset-section">
+                    <button id="resetButton" class="reset-btn">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Reset All Data
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="footer-nav">
+        <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="history.html">
+            <i class="fas fa-history"></i>
+            <span>History</span>
+        </a>
+        <a href="graphs.html">
+            <i class="fas fa-chart-bar"></i>
+            <span>Graphs</span>
+        </a>
+        <a href="profile.html" class="active">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <script src="profile.js"></script>
+    <script src="loader.js"></script>
+    <script src="reset.js"></script>
+</body>
+</html>

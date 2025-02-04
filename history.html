@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XpenseSmart - History</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="loader.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .history-page {
+            padding: 20px;
+            padding-bottom: 100px;
+            max-width: 800px;
+            margin: 0 auto;
+            margin-bottom: 60px;
+        }
+
+        .head {
+            text-align: center;
+            color: #183153;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filters select {
+            flex: 1;
+            min-width: 150px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filters select:hover {
+            border-color: #183153;
+        }
+
+        .history-summary {
+            background: linear-gradient(135deg, #183153, #2a4a7f);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .summary-amount {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .summary-amount.income {
+            color: #4CAF50;
+            text-shadow: 0 0 1px rgba(0,0,0,0.3);
+        }
+
+        .summary-amount.expense {
+            color: #ff4444;
+            text-shadow: 0 0 1px rgba(0,0,0,0.3);
+        }
+
+        .transaction-date-group {
+            margin-bottom: 20px;
+        }
+
+        .transaction-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .transaction-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .transaction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            gap: 15px;
+        }
+
+        .transaction-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .category-emoji {
+            font-size: 1.3rem;
+            min-width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .transaction-description {
+            font-weight: 500;
+            color: #333;
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .transaction-date {
+            font-size: 0.8rem;
+            color: #888;
+            font-weight: normal;
+            margin-top: 2px;
+        }
+
+        .transaction-amount {
+            font-weight: bold;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            margin-left: 15px;
+        }
+
+        .transaction-amount.income {
+            color: #4CAF50;
+        }
+
+        .transaction-amount.expense {
+            color: #ff4444;
+        }
+
+        .transaction-details {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .transaction-category, .transaction-payment, .transaction-recurring {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: #f5f5f5;
+            padding: 4px 8px;
+            border-radius: 15px;
+        }
+
+        .receipt-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #183153;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            padding: 4px 8px;
+            background-color: #f5f5f5;
+            border-radius: 15px;
+            transition: background-color 0.2s ease;
+        }
+
+        .receipt-link:hover {
+            background-color: #e0e0e0;
+        }
+
+        .no-transactions {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.1rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 600px) {
+            .history-page {
+                padding: 15px;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+
+            .filters select {
+                width: 100%;
+            }
+
+            .transaction-details {
+                flex-wrap: wrap;
+            }
+
+            .transaction-header {
+                gap: 10px;
+            }
+
+            .transaction-left {
+                gap: 10px;
+            }
+
+            .category-emoji {
+                min-width: 32px;
+                height: 32px;
+                font-size: 1.1rem;
+            }
+
+            .transaction-amount {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="history-page">
+        <h1 class="head">Transaction History</h1>
+        <div class="history-content">
+            <div class="filters">
+                <select id="monthFilter">
+                    <option value="all">All Months</option>
+                    <!-- JS will populate months -->
+                </select>
+                <select id="typeFilter">
+                    <option value="all">All Types</option>
+                    <option value="expense">Expenses</option>
+                    <option value="income">Income</option>
+                </select>
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="food">Food & Dining 🍽️</option>
+                    <option value="transportation">Transportation 🚗</option>
+                    <option value="utilities">Utilities 💡</option>
+                    <option value="shopping">Shopping 🛍️</option>
+                    <option value="entertainment">Entertainment 🎮</option>
+                    <option value="healthcare">Healthcare ⚕️</option>
+                    <option value="education">Education 📚</option>
+                    <option value="salary">Salary 💵</option>
+                    <option value="investment">Investment 📈</option>
+                    <option value="gift">Gift 🎁</option>
+                    <option value="other">Other 📝</option>
+                </select>
+                <select id="sortFilter">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="highest">Highest Amount</option>
+                    <option value="lowest">Lowest Amount</option>
+                </select>
+            </div>
+            <!-- History Summary will be inserted here by JS -->
+            <div id="historyList" class="transactions-list">
+                <!-- Transactions will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <nav class="footer-nav">
+        <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="history.html" class="active">
+            <i class="fas fa-history"></i>
+            <span>History</span>
+        </a>
+        <a href="graphs.html">
+            <i class="fas fa-chart-bar"></i>
+            <span>Graphs</span>
+        </a>
+        <a href="profile.html">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <script src="history.js"></script>
+    <script src="loader.js"></script>
+</body>
+</html>
