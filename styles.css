@@ -33,6 +33,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 header h1{
@@ -77,10 +78,10 @@ h2{
 }
 
 .head h2{
-    margin-left: 20px;
     margin-top: 10px;
     padding-bottom: 20px;
     font-size: 30px;
+    text-align: center;
 }
 
 .financial-overview {
@@ -159,6 +160,8 @@ form {
     gap: 15px;
     margin-bottom: 20px;
     margin-top: 15px;
+    width: 100%;
+    max-width: 400px;
 }
 
 input, select, button {
@@ -232,6 +235,7 @@ button {
     padding: 15px;
     margin-bottom: 10px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
 }
 
 .transaction-item:hover {
@@ -244,6 +248,8 @@ button {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
+    width: 100%;
+    padding: 0 5px;
 }
 
 .transaction-left {
@@ -330,8 +336,8 @@ button {
     background-color: white;
     display: flex;
     justify-content: space-around;
-    padding: 10px;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    padding: 15px 10px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .footer-nav a {
@@ -427,7 +433,7 @@ button {
 .filters {
     display: flex;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     flex-wrap: wrap;
 }
 
@@ -484,6 +490,7 @@ button {
     padding: 15px;
     margin-bottom: 10px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
 }
 
 .transaction-item:hover {
@@ -496,6 +503,8 @@ button {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
+    width: 100%;
+    padding: 0 5px;
 }
 
 .transaction-left {
@@ -568,12 +577,12 @@ button {
 .history-summary {
     background: white;
     border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 30px;
+    margin-bottom: 35px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 25px;
 }
 
 .summary-item {
@@ -627,9 +636,13 @@ button {
 
 /* Profile styles */
 .profile-container {
+    width: 100%;
     max-width: 800px;
     margin: 20px auto;
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .profile-card {
@@ -637,44 +650,32 @@ button {
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    margin-top: 20px;
+    margin: 30px auto;
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
 }
 
 .profile-header {
     text-align: center;
-    padding: 30px 20px;
+    padding: 35px 25px;
     background: #f8f9fa;
-}
-
-.profile-avatar {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 20px;
-}
-
-.profile-avatar i {
-    font-size: 100px;
-    color: #3498db;
+    margin-bottom: 35px;
 }
 
 .profile-info-edit {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
     max-width: 400px;
     margin: 0 auto;
 }
 
-.profile-info-edit input {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
 .profile-details {
     padding: 20px;
     display: flex;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
 }
@@ -897,7 +898,8 @@ button {
 /* Update existing balance-info styles */
 .balance-info {
     text-align: center;
-    padding-bottom: 10px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .charts-container {
@@ -956,21 +958,22 @@ canvas {
     margin-bottom: 5px;
 }
 
-/* Dashboard Grid Layout */
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
 .dashboard-card {
     background: white;
-    border-radius: 12px;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Balance Card */
@@ -978,7 +981,7 @@ canvas {
     grid-column: 1 / -1;
     background-color: #2ecc71;
     color: white;
-    margin-top: -20px;
+    margin-top: -12px;
 }
 
 .balance-info h3 {
@@ -1144,7 +1147,7 @@ canvas {
 
 .modal-content {
     background: white;
-    padding: 25px;
+    padding: 30px;
     border-radius: 12px;
     width: 90%;
     max-width: 500px;
@@ -1168,9 +1171,9 @@ canvas {
 }
 
 .form-group {
-    margin-bottom: 15px;
-    display: grid;
-    gap: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
 }
 
 @media (min-width: 768px) {
@@ -1182,11 +1185,13 @@ canvas {
 .receipt-upload {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px;
+    gap: 15px;
+    padding: 16px;
     border: 2px dashed #ddd;
     border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
 }
 
 .receipt-upload input[type="file"] {
@@ -1600,6 +1605,7 @@ canvas {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin: 25px 0;
 }
 
 .recurring-group label {
