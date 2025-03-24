@@ -197,6 +197,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Handle sidebar toggle and FAB button visibility
+const sidebarOverlayElement = document.querySelector('.sidebar-overlay');
+    const fab = document.querySelector('.fab');
+
+    if (sidebarOverlay && fab) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    if (sidebarOverlay.classList.contains('active')) {
+                        fab.style.opacity = '0';
+                        fab.style.pointerEvents = 'none';
+                    } else {
+                        fab.style.opacity = '1';
+                        fab.style.pointerEvents = 'auto';
+                    }
+                }
+            });
+        });
+
+        observer.observe(sidebarOverlay, { attributes: true });
+    }
+
     // FAB button click handler
     const fabButton = document.querySelector('.fab-button');
     if (fabButton) {

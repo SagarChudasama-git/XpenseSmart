@@ -134,20 +134,6 @@
     transform: scale(1);
 }
 
-/* Under Construction Popup */
-.under-construction-popup .confirmation-content {
-    background: #f8f9fa;
-}
-
-.under-construction-popup h3 i {
-    color: #3498db;
-}
-
-.under-construction-popup .confirmation-content p {
-    color: #2c3e50;
-    font-weight: 500;
-}
-
 .confirmation-content h3 {
     color: #2c3e50;
     margin-bottom: 1rem;
@@ -579,6 +565,8 @@ a {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1001;
+    opacity: 1;
+    transition: opacity 0.3s ease;
     pointer-events: auto;
 }
 

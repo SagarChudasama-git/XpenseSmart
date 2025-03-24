@@ -1,18 +1,22 @@
 /* Page Transitions */
 .page-transition {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(15px);
+    pointer-events: none;
+    transition: opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
 }
 
 .page-transition.active {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
 }
 
 /* Navigation Link Transitions */
 .nav-item {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    backface-visibility: hidden;
 }
 
 .nav-item:hover {
@@ -21,11 +25,13 @@
 
 /* Sidebar Transitions */
 .sidebar {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
 .sidebar-overlay {
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.4s ease-out;
+    will-change: opacity;
 }
 
 /* Search Panel Animation */

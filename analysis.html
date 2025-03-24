@@ -6,9 +6,64 @@
     <title>XpenseSmart - Analysis</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="transitions.css">
+    <link rel="stylesheet" href="loader.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .transaction-summary {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem;
+            background: #2c3e50;
+            margin: -20px;
+        }
+    
+        .summary-item {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+        }
+    
+        .summary-item h3 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+    
+        .summary-item .amount {
+            font-weight: 600;
+            font-size: 14px;
+        }
+    
+        .summary-item.expense .amount {
+            color: #ff7675;
+        }
+    
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    
+        .chart-wrapper {
+            background: #2c3e50;
+            border-radius: 12px;
+            padding: 1rem;
+            height: 300px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 338px;
+            margin-left: -25px;
+            margin-top: -13px;
+        }
+    
+        .summary-item.income .amount {
+            color: #00b894;
+        }
+    </style>
 </head>
 <body style="background-color: #f1f1f2;">
     
@@ -65,85 +120,35 @@
         </a>
     </nav>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function updateTransactionSummary() {
+                const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
+                let totalExpense = 0;
+                let totalIncome = 0;
+        
+                transactions.forEach(transaction => {
+                    if (transaction.type === 'expense') {
+                        totalExpense += transaction.amount;
+                    } else if (transaction.type === 'income') {
+                        totalIncome += transaction.amount;
+                    }
+                });
+        
+                document.getElementById('totalExpense').textContent = `₹${totalExpense.toFixed(2)}`;
+                document.getElementById('totalIncome').textContent = `₹${totalIncome.toFixed(2)}`;
+            }
+        
+            // Update summary when transactions change
+            updateTransactionSummary();
+        });
+        </script>
+
     <script src="script.js"></script>
     <script src="charts.js"></script>
     <script src="fab.js"></script>
+    <script src="loader.js"></script>
 </body>
 </html>
-<style>
-    .transaction-summary {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.5rem;
-        background: #2c3e50;
-        margin: -23px;
-    }
 
-    .summary-item {
-        flex: 1;
-        text-align: center;
-        padding: 0.5rem;
-    }
 
-    .summary-item h3 {
-        font-size: 0.9rem;
-        font-weight: 500;
-        margin-bottom: 0.5rem;
-        opacity: 0.8;
-    }
-
-    .summary-item .amount {
-        font-weight: 600;
-        font-size: 14px;
-    }
-
-    .summary-item.expense .amount {
-        color: #ff7675;
-    }
-
-    .chart-container {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        padding: 1rem;
-        margin-top: 2rem;
-    }
-
-    .chart-wrapper {
-        background: #2c3e50;
-        border-radius: 12px;
-        padding: 1rem;
-        height: 300px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 338px;
-        margin-left: -25px;
-        margin-top: -13px;
-    }
-
-    .summary-item.income .amount {
-        color: #00b894;
-    }
-</style>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    function updateTransactionSummary() {
-        const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
-        let totalExpense = 0;
-        let totalIncome = 0;
-
-        transactions.forEach(transaction => {
-            if (transaction.type === 'expense') {
-                totalExpense += transaction.amount;
-            } else if (transaction.type === 'income') {
-                totalIncome += transaction.amount;
-            }
-        });
-
-        document.getElementById('totalExpense').textContent = `₹${totalExpense.toFixed(2)}`;
-        document.getElementById('totalIncome').textContent = `₹${totalIncome.toFixed(2)}`;
-    }
-
-    // Update summary when transactions change
-    updateTransactionSummary();
-});
-</script>
