@@ -1,5 +1,3 @@
-![XpenseSmart](https://github.com/user-attachments/assets/7cb6053e-233b-4bf4-8ca1-5628ae3ee6b2)
-
 ## About
 
 XpenseSmart is a powerful and user-friendly expense tracker designed to help you take control of your finances. Whether you're managing daily expenses, tracking monthly budgets, or analyzing spending patterns, XpenseSmart provides a seamless experience across both web and desktop platforms.
