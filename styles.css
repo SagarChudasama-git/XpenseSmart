@@ -66,6 +66,7 @@
 
 .transaction-item.income {
     border-left-color: #00b894;
+    margin-top: 7px;
 }
 
 .transaction-info {
