@@ -23,11 +23,11 @@ XpenseSmart is a powerful and user-friendly expense tracker designed to help you
 
 ##### For Smartphone(Android)
 
-- [XpenseSmart.apk](https://drive.google.com/file/d/1yS-X60gTermUCZzKmGPAVbWowL0G8_us/view?usp=sharing)
+- [XpenseSmart.apk](https://drive.google.com/file/d/1yS-X60gTermUCZzKmGPAVbWowL0G8_us/view?usp=drive_link)
 
 ## Contact
 
-For any queries, reach out at **sagar.chudasama2007@gmail.com**.
+For any queries, reach out at **sagar20112007@gmail.com**.
 
 
 ## Developer
